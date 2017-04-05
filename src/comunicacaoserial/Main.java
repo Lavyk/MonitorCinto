@@ -30,12 +30,29 @@ public class Main extends javax.swing.JFrame {
         int larg = (int) Math.round(fLarg);
         int alt = (int) Math.round(fAlt);
 
-        setSize(larg, alt);
-
+        this.setSize(larg, alt);
+        
+        int locationX = (int) Math.round(tamTela.width - (tamTela.width)*0.86);
+        int locationY = (int) Math.round(tamTela.height - (tamTela.height)*0.83);;
+        
+        System.out.println("["+locationX+", "+locationY+"]");
+        this.setLocation(locationX, locationY);
+        
         panelGeral.setPreferredSize(new Dimension(larg, alt));
-        panelLimite.setPreferredSize(new Dimension((int) Math.round((larg * 0.2)), alt));
-
-
+        
+        Dimension tamanhoPanelLim = new Dimension((int) Math.round((larg * 0.20)), alt);
+        
+        panelLimite.setSize(tamanhoPanelLim);
+        panelLimite.setPreferredSize(tamanhoPanelLim);
+        panelLimite.setLocation(0, 0);
+        panelNum1.setSize((int) Math.round(tamanhoPanelLim.getWidth()*0.7), (int) Math.round(tamanhoPanelLim.getHeight()*0.4));
+        panelNum1.setPreferredSize(tamanhoPanelLim);
+        System.out.println(tamanhoPanelLim.getWidth()*0.3);
+        
+        
+        panelSensor2.setPreferredSize(new Dimension((int) Math.round((larg * 0.2)), alt));
+        panelSensor2.setLocation((int) Math.round(larg*0.25), 0);
+        
         /*
         txtLimite.setText(conn.valores[0]);
         txtSensor1.setText(conn.valores[1]);
@@ -57,37 +74,52 @@ public class Main extends javax.swing.JFrame {
 
         panelGeral = new javax.swing.JPanel();
         panelLimite = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        panelNum1 = new javax.swing.JPanel();
+        txtLimite1 = new javax.swing.JLabel();
+        panelSensor2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         txtLimite = new javax.swing.JLabel();
-        panelSensor1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        txtSensor1 = new javax.swing.JLabel();
-        panelSensor2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        txtSensor2 = new javax.swing.JLabel();
-        panelSensor3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        txtSensor3 = new javax.swing.JLabel();
-        panelSensor4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        txtSensor4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         panelGeral.setBackground(new java.awt.Color(0, 0, 0));
         panelGeral.setForeground(new java.awt.Color(0, 0, 255));
+        panelGeral.setLayout(null);
 
         panelLimite.setBackground(new java.awt.Color(255, 204, 0));
+        panelLimite.setLayout(null);
+
+        jLabel8.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Limite");
+        panelLimite.add(jLabel8);
+        jLabel8.setBounds(55, 15, 83, 29);
+
+        panelNum1.setBackground(new java.awt.Color(0, 51, 51));
+        panelNum1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        panelNum1.setLayout(null);
+
+        txtLimite1.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
+        txtLimite1.setForeground(new java.awt.Color(51, 204, 0));
+        txtLimite1.setText("3.00");
+        panelNum1.add(txtLimite1);
+        txtLimite1.setBounds(21, 1, 110, 63);
+
+        panelLimite.add(panelNum1);
+        panelNum1.setBounds(40, 44, 70, 50);
+        panelNum1.setBounds(25, 45, 0, 0);
+
+        panelGeral.add(panelLimite);
+        panelLimite.setBounds(1, 0, 90, 120);
+
+        panelSensor2.setBackground(new java.awt.Color(255, 204, 0));
 
         jLabel7.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Limite");
+        jLabel7.setText("Sensor2");
 
         jPanel9.setBackground(new java.awt.Color(0, 51, 51));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -104,180 +136,30 @@ public class Main extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
         jPanel9.add(txtLimite, gridBagConstraints);
 
-        panelLimite.setSize(522, 477);
+        panelSensor2.setSize(522, 477);
 
-        javax.swing.GroupLayout panelLimiteLayout = new javax.swing.GroupLayout(panelLimite);
-        panelLimite.setLayout(panelLimiteLayout);
-        panelLimiteLayout.setHorizontalGroup(
-            panelLimiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLimiteLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelSensor2Layout = new javax.swing.GroupLayout(panelSensor2);
+        panelSensor2.setLayout(panelSensor2Layout);
+        panelSensor2Layout.setHorizontalGroup(
+            panelSensor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSensor2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel7))
-            .addGroup(panelLimiteLayout.createSequentialGroup()
+            .addGroup(panelSensor2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        panelLimiteLayout.setVerticalGroup(
-            panelLimiteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLimiteLayout.createSequentialGroup()
+        panelSensor2Layout.setVerticalGroup(
+            panelSensor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSensor2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel7)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelSensor1.setBackground(new java.awt.Color(0, 0, 0));
-        panelSensor1.setLayout(new java.awt.GridBagLayout());
-
-        jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("Sensor1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        panelSensor1.add(jLabel9, gridBagConstraints);
-
-        jPanel11.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel11.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel11.setLayout(new java.awt.GridBagLayout());
-
-        txtSensor1.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
-        txtSensor1.setForeground(new java.awt.Color(51, 204, 0));
-        txtSensor1.setText("0.123");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
-        jPanel11.add(txtSensor1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelSensor1.add(jPanel11, gridBagConstraints);
-
-        panelSensor2.setBackground(new java.awt.Color(0, 0, 0));
-        panelSensor2.setLayout(new java.awt.GridBagLayout());
-
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("Sensor2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        panelSensor2.add(jLabel2, gridBagConstraints);
-
-        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
-
-        txtSensor2.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
-        txtSensor2.setForeground(new java.awt.Color(51, 204, 0));
-        txtSensor2.setText("0.123");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
-        jPanel2.add(txtSensor2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelSensor2.add(jPanel2, gridBagConstraints);
-
-        panelSensor3.setBackground(new java.awt.Color(0, 0, 0));
-        panelSensor3.setLayout(new java.awt.GridBagLayout());
-
-        jLabel3.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("Sensor3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        panelSensor3.add(jLabel3, gridBagConstraints);
-
-        jPanel5.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel5.setLayout(new java.awt.GridBagLayout());
-
-        txtSensor3.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
-        txtSensor3.setForeground(new java.awt.Color(51, 204, 0));
-        txtSensor3.setText("0.123");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
-        jPanel5.add(txtSensor3, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelSensor3.add(jPanel5, gridBagConstraints);
-
-        panelSensor4.setBackground(new java.awt.Color(0, 0, 0));
-        panelSensor4.setLayout(new java.awt.GridBagLayout());
-
-        jLabel5.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Sensor4");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        panelSensor4.add(jLabel5, gridBagConstraints);
-
-        jPanel7.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel7.setLayout(new java.awt.GridBagLayout());
-
-        txtSensor4.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
-        txtSensor4.setForeground(new java.awt.Color(51, 204, 0));
-        txtSensor4.setText("0.123");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
-        jPanel7.add(txtSensor4, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelSensor4.add(jPanel7, gridBagConstraints);
-
-        javax.swing.GroupLayout panelGeralLayout = new javax.swing.GroupLayout(panelGeral);
-        panelGeral.setLayout(panelGeralLayout);
-        panelGeralLayout.setHorizontalGroup(
-            panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelGeralLayout.createSequentialGroup()
-                .addComponent(panelLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelSensor1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelSensor2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelSensor3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelSensor4, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        panelGeralLayout.setVerticalGroup(
-            panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelSensor1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelSensor2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelSensor3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelSensor4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        panelGeral.add(panelSensor2);
+        panelSensor2.setBounds(384, 0, 172, 138);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -335,26 +217,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel panelGeral;
     private javax.swing.JPanel panelLimite;
-    private javax.swing.JPanel panelSensor1;
+    private javax.swing.JPanel panelNum1;
     private javax.swing.JPanel panelSensor2;
-    private javax.swing.JPanel panelSensor3;
-    private javax.swing.JPanel panelSensor4;
     private javax.swing.JLabel txtLimite;
-    private javax.swing.JLabel txtSensor1;
-    private javax.swing.JLabel txtSensor2;
-    private javax.swing.JLabel txtSensor3;
-    private javax.swing.JLabel txtSensor4;
+    private javax.swing.JLabel txtLimite1;
     // End of variables declaration//GEN-END:variables
 }
