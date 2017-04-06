@@ -52,8 +52,9 @@ public class Main extends javax.swing.JFrame {
         int fontSize = (int) Math.round(tamanhoPanelLim.getWidth() * 0.17);
 
         Font minhaFonte = Font.createFont(Font.TRUETYPE_FONT,
-                new File("src\\comunicacaoserial\\fontes\\digital-7.ttf"))
+                new File("../fontes/digital-7.ttf"))
                 .deriveFont(Font.PLAIN, fontSize);
+
 
         //---------------------Panel Limite------------------------
         panelLimite.setSize(tamanhoPanelLim);
