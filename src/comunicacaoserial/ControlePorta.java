@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.TooManyListenersException;
 import javax.swing.JOptionPane;
 
 public class ControlePorta {
@@ -103,6 +104,44 @@ public class ControlePorta {
                     "Receber dados", JOptionPane.PLAIN_MESSAGE);
         }
         return null;
+    }
+
+    private byte[] readBuffer = new byte[400];
+
+    private void readSerial() {
+        try {
+            int availableBytes = serialInput.available();
+            if (availableBytes > 0) {
+                // Read the serial port
+                serialInput.read(readBuffer, 0, availableBytes);
+
+                // Print it out
+                System.out.println(
+                        new String(readBuffer, 0, availableBytes));
+            }
+        } catch (IOException e) {
+        }
+    }
+
+    private class SerialEventHandler implements SerialPortEventListener {
+
+        public void serialEvent(SerialPortEvent event) {
+            switch (event.getEventType()) {
+                case SerialPortEvent.DATA_AVAILABLE:
+                    readSerial();
+                    break;
+            }
+        }
+    }
+
+    private void setSerialEventHandler(SerialPort serialPort) {
+        try {
+            // Add the serial port event listener
+            serialPort.addEventListener(new SerialEventHandler());
+            serialPort.notifyOnDataAvailable(true);
+        } catch (TooManyListenersException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     /*public void serialEvent(SerialPortEvent e) {
