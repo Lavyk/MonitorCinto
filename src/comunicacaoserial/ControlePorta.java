@@ -155,4 +155,45 @@ public class ControlePorta {
     "Receber dados", JOptionPane.PLAIN_MESSAGE);
     }
     }*/
+ /*
+
+
+    import java.util.concurrent.locks.*;
+
+// accessible to both reader and writer
+...
+Lock lock = new ReentrantLock();
+Condition dataAvailable = lock.newCondition();
+byte[] buffer;
+
+// in the writer
+...
+public void run() {
+    while(true) {
+        lock.lock();
+        try {
+            dataAvailable.await();  // writer thread dozes
+            doStuff(buffer);
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+
+
+// in the reader
+...
+public void onEvent() {
+    lock.lock();
+    try {
+        buffer = readData();
+        dataAvailable.signal();   // writer thread wakes up
+    } finally {
+        lock.unlock();
+    }
+}
+
+
+
+     */
 }
