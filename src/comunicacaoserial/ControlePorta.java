@@ -60,7 +60,7 @@ public class ControlePorta {
                     SerialPort.STOPBITS_1, //taxa de 10 bits 1 (recebimento)
                     SerialPort.PARITY_NONE); //receber e enviar dados
 
-            port.addEventListener((SerialPortEventListener) this);
+            //port.addEventListener((SerialPortEventListener) this);
             port.notifyOnDataAvailable(true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,15 +105,15 @@ public class ControlePorta {
         return null;
     }
 
-    public void serialEvent(SerialPortEvent e) {
-        try {
-            String line = serialReader.readLine();
-            if (line.startsWith("MON:")) {
-                values = line.split(":");
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Não foi possível receber os dado. ",
-                    "Receber dados", JOptionPane.PLAIN_MESSAGE);
-        }
+    /*public void serialEvent(SerialPortEvent e) {
+    try {
+    String line = serialReader.readLine();
+    if (line.startsWith("MON:")) {
+    values = line.split(":");
     }
+    } catch (IOException ex) {
+    JOptionPane.showMessageDialog(null, "Não foi possível receber os dado. ",
+    "Receber dados", JOptionPane.PLAIN_MESSAGE);
+    }
+    }*/
 }

@@ -14,7 +14,7 @@ import java.awt.Toolkit;
  */
 public class Main extends javax.swing.JFrame {
 
-    /*Arduino conn = new Arduino();
+    Arduino conn = new Arduino();
 
     /**
      * Creates new form Teste
@@ -47,15 +47,20 @@ public class Main extends javax.swing.JFrame {
         panelLimite.setLocation(0, 0);
         panelNum1.setSize((int) Math.round(tamanhoPanelLim.getWidth()*0.7), (int) Math.round(tamanhoPanelLim.getHeight()*0.4));
         panelNum1.setPreferredSize(tamanhoPanelLim);
-        System.out.println(tamanhoPanelLim.getWidth()*0.3);
-        
+        System.out.println(tamanhoPanelLim.getWidth()*0.1);
+        int fontSize = (int) Math.round(tamanhoPanelLim.getWidth()*0.17);
         
         panelSensor2.setPreferredSize(new Dimension((int) Math.round((larg * 0.2)), alt));
         panelSensor2.setLocation((int) Math.round(larg*0.25), 0);
         
+        
+        
+        //String[] text = conn.arduino.receberDados();
+        
+        txtLimite1.setFont(new java.awt.Font("Bookman Old Style", 1, fontSize));
+        /*txtLimite1.setText(text[1]);
+        txtSensor1.setText(text[2]);
         /*
-        txtLimite.setText(conn.valores[0]);
-        txtSensor1.setText(conn.valores[1]);
         txtSensor2.setText(conn.valores[2]);
         txtSensor3.setText(conn.valores[3]);
         txtSensor4.setText(conn.valores[4]);
@@ -80,7 +85,7 @@ public class Main extends javax.swing.JFrame {
         panelSensor2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        txtLimite = new javax.swing.JLabel();
+        txtSensor1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -125,16 +130,16 @@ public class Main extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        txtLimite.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
-        txtLimite.setForeground(new java.awt.Color(51, 204, 0));
-        txtLimite.setText("3.00");
+        txtSensor1.setFont(new java.awt.Font("Digital-7", 0, 36)); // NOI18N
+        txtSensor1.setForeground(new java.awt.Color(51, 204, 0));
+        txtSensor1.setText("3.00");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 20;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 5, 0);
-        jPanel9.add(txtLimite, gridBagConstraints);
+        jPanel9.add(txtSensor1, gridBagConstraints);
 
         panelSensor2.setSize(522, 477);
 
@@ -167,13 +172,13 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 251, Short.MAX_VALUE))
+                .addGap(0, 230, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,7 +229,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel panelLimite;
     private javax.swing.JPanel panelNum1;
     private javax.swing.JPanel panelSensor2;
-    private javax.swing.JLabel txtLimite;
     private javax.swing.JLabel txtLimite1;
+    private javax.swing.JLabel txtSensor1;
     // End of variables declaration//GEN-END:variables
 }
