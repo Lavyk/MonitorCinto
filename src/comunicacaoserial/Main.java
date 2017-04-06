@@ -5,8 +5,17 @@
  */
 package comunicacaoserial;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,12 +23,11 @@ import java.awt.Toolkit;
  */
 public class Main extends javax.swing.JFrame {
 
-    Arduino conn = new Arduino();
-
+    //Arduino conn = new Arduino();
     /**
      * Creates new form Teste
      */
-    public Main() {
+    public Main() throws FontFormatException, IOException {
         initComponents();
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -31,33 +39,44 @@ public class Main extends javax.swing.JFrame {
         int alt = (int) Math.round(fAlt);
 
         this.setSize(larg, alt);
-        
-        int locationX = (int) Math.round(tamTela.width - (tamTela.width)*0.86);
-        int locationY = (int) Math.round(tamTela.height - (tamTela.height)*0.83);;
-        
-        System.out.println("["+locationX+", "+locationY+"]");
+
+        int locationX = (int) Math.round(tamTela.width - (tamTela.width) * 0.86);
+        int locationY = (int) Math.round(tamTela.height - (tamTela.height) * 0.83);;
+
+        System.out.println("[" + locationX + ", " + locationY + "]");
         this.setLocation(locationX, locationY);
-        
+
         panelGeral.setPreferredSize(new Dimension(larg, alt));
-        
+
         Dimension tamanhoPanelLim = new Dimension((int) Math.round((larg * 0.20)), alt);
-        
+        int fontSize = (int) Math.round(tamanhoPanelLim.getWidth() * 0.17);
+
+        Font minhaFonte = Font.createFont(Font.TRUETYPE_FONT,
+                new File("src\\comunicacaoserial\\fontes\\digital-7.ttf"))
+                .deriveFont(Font.PLAIN, fontSize);
+
+        //---------------------Panel Limite------------------------
         panelLimite.setSize(tamanhoPanelLim);
         panelLimite.setPreferredSize(tamanhoPanelLim);
         panelLimite.setLocation(0, 0);
-        panelNum1.setSize((int) Math.round(tamanhoPanelLim.getWidth()*0.7), (int) Math.round(tamanhoPanelLim.getHeight()*0.4));
+        panelNum1.setSize((int) Math.round(tamanhoPanelLim.getWidth() * 0.7), (int) Math.round(tamanhoPanelLim.getHeight() * 0.4));
         panelNum1.setPreferredSize(tamanhoPanelLim);
-        System.out.println(tamanhoPanelLim.getWidth()*0.1);
-        int fontSize = (int) Math.round(tamanhoPanelLim.getWidth()*0.17);
-        
+        panelLimite.setBackground(Color.BLACK);
+        panelNum1.setBounds((int) Math.round((larg * 0.025)), (int) Math.round((alt * 0.35)), (int) Math.round((larg * 0.15)), (int) Math.round((alt * 0.3)));
+        txtLimite1.setBounds((int) Math.round((larg * 0.045)), (int) -Math.round((alt * 0.025)), (int) Math.round((larg * 0.15)), (int) Math.round((alt * 0.3)));
+        txtTitulo1.setBounds((int) Math.round((larg * 0.057)), (int) Math.round((alt * 0.1)), (int) Math.round((larg * 0.6)), (int) Math.round((alt * 0.3)));
+
+        txtLimite1.setFont(minhaFonte);
+        txtTitulo1.setFont(new java.awt.Font("Bookman Old Style", 1, (int) Math.round(fontSize * 0.7)));
+
+        //---------------------------------------------------------
+        System.out.println((int) Math.round((larg * 0.035)));
+        System.out.println(tamanhoPanelLim.getWidth() * 0.1);
+
         panelSensor2.setPreferredSize(new Dimension((int) Math.round((larg * 0.2)), alt));
-        panelSensor2.setLocation((int) Math.round(larg*0.25), 0);
-        
-        
-        
+        panelSensor2.setLocation((int) Math.round(larg * 0.25), 0);
+
         //String[] text = conn.arduino.receberDados();
-        
-        txtLimite1.setFont(new java.awt.Font("Bookman Old Style", 1, fontSize));
         /*txtLimite1.setText(text[1]);
         txtSensor1.setText(text[2]);
         /*
@@ -79,7 +98,7 @@ public class Main extends javax.swing.JFrame {
 
         panelGeral = new javax.swing.JPanel();
         panelLimite = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        txtTitulo1 = new javax.swing.JLabel();
         panelNum1 = new javax.swing.JPanel();
         txtLimite1 = new javax.swing.JLabel();
         panelSensor2 = new javax.swing.JPanel();
@@ -97,11 +116,11 @@ public class Main extends javax.swing.JFrame {
         panelLimite.setBackground(new java.awt.Color(255, 204, 0));
         panelLimite.setLayout(null);
 
-        jLabel8.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Limite");
-        panelLimite.add(jLabel8);
-        jLabel8.setBounds(55, 15, 83, 29);
+        txtTitulo1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        txtTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitulo1.setText("Limite");
+        panelLimite.add(txtTitulo1);
+        txtTitulo1.setBounds(55, 15, 82, 29);
 
         panelNum1.setBackground(new java.awt.Color(0, 51, 51));
         panelNum1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -164,7 +183,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         panelGeral.add(panelSensor2);
-        panelSensor2.setBounds(384, 0, 172, 138);
+        panelSensor2.setBounds(384, 0, 155, 138);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,14 +235,19 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                try {
+                    new Main().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel panelGeral;
     private javax.swing.JPanel panelLimite;
@@ -231,5 +255,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel panelSensor2;
     private javax.swing.JLabel txtLimite1;
     private javax.swing.JLabel txtSensor1;
+    private javax.swing.JLabel txtTitulo1;
     // End of variables declaration//GEN-END:variables
 }
